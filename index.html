@@ -6,49 +6,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Expense Tracker</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <header>
-        <h1>💰 Personal Expense Tracker</h1>
-        <p>Manage your money wisely!</p>
+    <header class="topbar">
+        <div>
+            <p class="eyebrow">YOUR MONEY, YOUR CONTROL</p>
+            <h1>💰 Expense Tracker</h1>
+            <p>Understand your spending. Build better habits.</p>
+        </div>
+        <span class="live-badge">● Personal Dashboard</span>
     </header>
 
-    <main>
-        <section class="card">
-            <h2>Add an Expense</h2>
+    <main class="container">
+        <section class="summary-grid">
+            <article class="stat-card teal">
+                <span>Total Spending</span>
+                <h2 id="total">₹0.00</h2>
+                <small>All recorded expenses</small>
+            </article>
+            <article class="stat-card purple">
+                <span>Transactions</span>
+                <h2 id="count">0</h2>
+                <small>Expenses recorded</small>
+            </article>
+            <article class="stat-card orange">
+                <span>Average Expense</span>
+                <h2 id="average">₹0.00</h2>
+                <small>Per transaction</small>
+            </article>
+        </section>
 
-            <form id="expense-form">
-                <label for="amount">Amount (₹)</label>
-                <input type="number" id="amount"
-                       min="0.01" step="0.01" required>
+        <section class="content-grid">
+            <article class="panel">
+                <h2>➕ Add an Expense</h2>
+                <form id="expense-form">
+                    <label for="amount">Amount (₹)</label>
+                    <input id="amount" type="number" min="0.01"
+                           step="0.01" placeholder="e.g. 250" required>
 
-                <label for="category">Category</label>
-                <select id="category" required>
-                    <option value="">Choose category</option>
+                    <label for="category">Category</label>
+                    <select id="category" required>
+                        <option value="">Choose category</option>
+                        <option>Food</option>
+                        <option>Travel</option>
+                        <option>Shopping</option>
+                        <option>Education</option>
+                        <option>Bills</option>
+                        <option>Health</option>
+                        <option>Entertainment</option>
+                        <option>Other</option>
+                    </select>
+
+                    <label for="description">Description</label>
+                    <input id="description" maxlength="100"
+                           placeholder="e.g. Lunch" required>
+
+                    <label for="date">Date</label>
+                    <input id="date" type="date" required>
+
+                    <button class="primary-btn" type="submit">
+                        + Add Expense
+                    </button>
+                </form>
+                <p id="message" role="status"></p>
+            </article>
+
+            <article class="panel">
+                <h2>📊 Category Breakdown</h2>
+                <div class="chart-box">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </article>
+        </section>
+
+        <section class="panel">
+            <h2>📈 Monthly Spending</h2>
+            <p class="muted">Your spending over the last six months</p>
+            <div class="monthly-chart">
+                <canvas id="monthlyChart"></canvas>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="section-heading">
+                <div>
+                    <h2>🧾 Expense History</h2>
+                    <p class="muted">Search and manage your transactions</p>
+                </div>
+                <button id="export-btn" class="secondary-btn" type="button">
+                    Download CSV
+                </button>
+            </div>
+
+            <div class="filters">
+                <input id="search" type="search"
+                       placeholder="Search description or category...">
+                <select id="filter-category">
+                    <option value="">All categories</option>
                     <option>Food</option>
                     <option>Travel</option>
                     <option>Shopping</option>
                     <option>Education</option>
+                    <option>Bills</option>
+                    <option>Health</option>
+                    <option>Entertainment</option>
                     <option>Other</option>
                 </select>
+            </div>
 
-                <label for="description">Description</label>
-                <input type="text" id="description"
-                       placeholder="e.g. Lunch" required>
-
-                <button type="submit">Add Expense</button>
-            </form>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expense-list"></tbody>
+                </table>
+            </div>
+            <p id="empty-message" class="muted">No expenses to display yet.</p>
         </section>
 
-        <section class="card">
-            <h2>Total Spending</h2>
-            <p id="total">₹0.00</p>
-        </section>
-
-        <section class="card">
-            <h2>Expense Records</h2>
-            <ul id="expense-list"></ul>
-        </section>
+        <footer>
+            Personal Expense Tracker · Built with HTML, CSS and JavaScript
+        </footer>
     </main>
 
     <script src="app.js"></script>
