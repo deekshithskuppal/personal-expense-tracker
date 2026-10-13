@@ -1,0 +1,91 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+header {
+    background: #0f766e;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+header h1 {
+    margin: 0 0 10px;
+}
+
+main {
+    max-width: 700px;
+    margin: 25px auto;
+    padding: 0 15px;
+}
+
+.card {
+    background: white;
+    padding: 22px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000010;
+}
+
+label {
+    display: block;
+    margin: 15px 0 6px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 13px;
+    border: none;
+    border-radius: 7px;
+    background: #0f766e;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #115e59;
+}
+
+#total {
+    font-size: 30px;
+    font-weight: bold;
+    color: #0f766e;
+}
+
+#expense-list {
+    padding-left: 20px;
+}
+
+#expense-list li {
+    margin: 12px 0;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 25px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+}
